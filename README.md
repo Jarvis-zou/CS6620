@@ -14,3 +14,6 @@ Before running the tests, you need to install the project dependencies. Ensure y
 pip install -r requirements.txt
 python tests/test_main.py
 ```
+## Note
+The .github/workflows/ci.yml file will automatically run the unit tests when you push changes to the repository or create a pull request. This ensures that all tests are executed automatically to maintain code quality.
+
