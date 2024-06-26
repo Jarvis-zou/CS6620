@@ -14,6 +14,17 @@ Before running the tests, you need to install the project dependencies. Ensure y
 pip install -r requirements.txt
 python tests/test_main.py
 ```
-## Note
-The .github/workflows/ci.yml file will automatically run the unit tests when you push changes to the repository or create a pull request. This ensures that all tests are executed automatically to maintain code quality.
+## CI/CD Pipeline
 
+This repository contains a CI/CD pipeline that runs automatically on every push and pull request to the `main` branch. Additionally, you can run the workflow manually.
+
+### Running the Workflow Manually
+
+To run the workflow manually, follow these steps:
+
+1. Navigate to the `Actions` tab in your GitHub repository.
+2. In the left sidebar, select the workflow named `CI/CD Pipeline`.
+3. Click the `Run workflow` button on the right side of the page.
+4. Select the branch (if necessary) and click the `Run workflow` button to trigger the workflow.
+
+The workflow will then run, and you can monitor its progress under the `Actions` tab.
