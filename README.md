@@ -1,30 +1,47 @@
 # CS6620 Project
 
-## Project Overview
-This project demonstrates basic function operations and unit testing.
+# REST API with Docker
 
-## Install Dependencies
-Before running the tests, you need to install the project dependencies. Ensure you have Python installed and follow these steps:
+This project demonstrates a simple REST API with endpoints for GET, POST, PUT, and DELETE operations. It also includes tests for each endpoint and uses Docker for consistent and reproducible environments.
 
-1. Open a terminal.
-2. Navigate to the project directory.
-3. Run the following command to install the dependencies:
+## Prerequisites
+
+- Docker
+
+## Setup
+
+### 1. Running the API
+
+To build and run the REST API container, execute the following commands:
 
 ```sh
-pip install -r requirements.txt
-python tests/test_main.py
+chmod +x run_api.sh
+./run_api.sh
 ```
-## CI/CD Pipeline
 
-This repository contains a CI/CD pipeline that runs automatically on every push and pull request to the `main` branch. Additionally, you can run the workflow manually.
+### 2. Running the Tests
 
-### Running the Workflow Manually
+To build and run the tests, execute the following commands:
 
-To run the workflow manually, follow these steps:
+```sh
+chmod +x run_tests.sh
+./run_tests.sh
+```
 
-1. Navigate to the `Actions` tab in your GitHub repository.
-2. In the left sidebar, select the workflow named `CI/CD Pipeline`.
-3. Click the `Run workflow` button on the right side of the page.
-4. Select the branch (if necessary) and click the `Run workflow` button to trigger the workflow.
+## REST API Endpoints
 
-The workflow will then run, and you can monitor its progress under the `Actions` tab.
+- GET /items/<item_id>: Retrieve an item by ID.
+- POST /items: Create a new item.
+- PUT /items/<item_id>: Update an existing item by ID.
+- DELETE /items/<item_id>: Delete an item by ID.
+
+## Testing
+The tests are written using pytest and are located in test/test_rest.py. The tests check the following:
+
+- Creating an item (test_create_item)
+- Retrieving an item (test_get_item)
+- Updating an item (test_update_item)
+- Deleting an item (test_delete_item)
+
+## CI/CD
+This project includes a GitHub Actions workflow to automatically build and test the API on every push to the main branch or on pull requests targeting the main branch. The workflow is defined in .github/workflows/ci.yml
