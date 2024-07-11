@@ -26,8 +26,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Build and test
+    - name: Build REST API image
+      run: docker build -t rest-api -f Dockerfile.api .
+
+    - name: Run REST API container
+      run: docker run -d -p 5000:5000 --name rest-api-container rest-api
+
+    - name: Wait for API to be ready
       run: |
-        docker build -t rest-api -f Dockerfile.api .
+        echo "Waiting for API to be ready..."
+        sleep 10 # Wait for 10 seconds to ensure the API is up and running
+
+    - name: Build and run tests
+      run: |
         docker build -t rest-api-test -f Dockerfile.test .
-        docker run rest-api-test
+        docker run --network host rest-api-test
+
+    - name: Cleanup
+      run: docker rm -f rest-api-container
