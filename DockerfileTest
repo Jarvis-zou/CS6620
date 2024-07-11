@@ -15,8 +15,7 @@ RUN python3 -m venv venv
 COPY requirements.txt requirements.txt
 RUN . venv/bin/activate && pip install -r requirements.txt
 
-COPY test/test_rest.py /app
-COPY REST/rest.py /app
+COPY tests/test_rest.py /app
 
 # Use the virtual environment to run the tests
 CMD ["venv/bin/pytest", "test_rest.py"]
