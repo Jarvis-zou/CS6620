@@ -27,7 +27,7 @@ jobs:
           ${{ runner.os }}-buildx-
 
     - name: Build REST API image
-      run: docker build -t rest-api -f Dockerfile.api .
+      run: docker build -t rest-api -f DockerfileAPI .
 
     - name: Run REST API container
       run: docker run -d -p 5000:5000 --name rest-api-container rest-api

@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build -t rest-api-test -f Dockerfile.test .
+docker build -t rest-api-test -f DockerfileTest .
 docker run rest-api-test
