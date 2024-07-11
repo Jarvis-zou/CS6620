@@ -39,7 +39,7 @@ jobs:
 
     - name: Build and run tests
       run: |
-        docker build -t rest-api-test -f Dockerfile.test .
+        docker build -t rest-api-test -f DockerfileTest .
         docker run --network host rest-api-test
 
     - name: Cleanup
