@@ -6,4 +6,4 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-CMD ["pytest", "tests/test_rest.py"]
+CMD ["pytest", "/app/tests/test_rest.py"]
