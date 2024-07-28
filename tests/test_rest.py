@@ -1,4 +1,5 @@
 import os
+print("Current working directory: ", os.getcwd())
 import pytest
 import boto3
 from botocore.exceptions import ClientError

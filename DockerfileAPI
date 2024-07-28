@@ -2,8 +2,8 @@ FROM python:3.8-slim
 
 WORKDIR /app
 
-COPY . /app
+COPY REST/rest.py /app
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "REST/rest.py"]
+CMD ["python", "rest.py"]
