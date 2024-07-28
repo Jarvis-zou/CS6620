@@ -1,5 +1,5 @@
 #!/bin/bash
 localstack start
-sleep 5
+sleep 10
 
 python REST/rest.py
