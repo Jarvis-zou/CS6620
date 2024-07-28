@@ -33,7 +33,7 @@ jobs:
     - name: Wait for services to be ready
       run: |
         echo "Waiting for services to be ready..."
-        sleep 10 # Wait for 10 seconds to ensure the services are up and running
+        sleep 5 # Wait for 5 seconds to ensure the services are up and running
 
     - name: Run tests
       run: docker-compose run tests
