@@ -7,6 +7,8 @@ services:
       - "4566:4566"
     environment:
       - SERVICES=dynamodb,s3
+    networks:
+      - localstack-network
 
   api:
     build:
@@ -19,6 +21,8 @@ services:
       - LOCALSTACK_EDGE_PORT=4566
     depends_on:
       - localstack
+    networks:
+      - localstack-network
 
   tests:
     build:
@@ -29,4 +33,10 @@ services:
       - LOCALSTACK_EDGE_PORT=4566
     depends_on:
       - api
+    networks:
+      - localstack-network
     command: ["pytest", "test_rest.py"]
+
+networks:
+  localstack-network:
+    driver: bridge
