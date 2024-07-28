@@ -20,6 +20,7 @@ services:
     environment:
       - LOCALSTACK_HOSTNAME=localstack
       - LOCALSTACK_EDGE_PORT=4566
+      - API_URL=http://api:5000
     depends_on:
       - api
     networks:
