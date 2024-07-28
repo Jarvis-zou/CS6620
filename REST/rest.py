@@ -3,8 +3,6 @@ from flask import Flask, request, jsonify
 import json
 
 app = Flask(__name__)
-
-# 添加了 AWS 凭证参数
 dynamodb = boto3.resource('dynamodb',
                           endpoint_url='http://localhost:4566',
                           region_name='us-east-1',
@@ -17,7 +15,7 @@ s3 = boto3.client('s3',
                   aws_secret_access_key='test')
 
 table_name = 'MyTestTable'
-bucket_name = 'my-test-bucket'  # 使用有效的存储桶名称
+bucket_name = 'my-test-bucket'
 
 
 def create_dynamodb_table():

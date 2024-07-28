@@ -12,6 +12,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566
+
     steps:
     - uses: actions/checkout@v3
 
@@ -26,21 +32,16 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Build REST API image
-      run: docker build -t rest-api -f DockerfileAPI .
+    - name: Build and run services
+      run: docker-compose up --build -d
 
-    - name: Run REST API container
-      run: docker run -d -p 5000:5000 --name rest-api-container rest-api
-
-    - name: Wait for API to be ready
+    - name: Wait for services to be ready
       run: |
-        echo "Waiting for API to be ready..."
-        sleep 10 # Wait for 10 seconds to ensure the API is up and running
+        echo "Waiting for services to be ready..."
+        sleep 10 # Wait for 20 seconds to ensure the services are up and running
 
-    - name: Build and run tests
-      run: |
-        docker build -t rest-api-test -f DockerfileTest .
-        docker run --network host rest-api-test
+    - name: Run tests
+      run: docker-compose run tests
 
     - name: Cleanup
-      run: docker rm -f rest-api-container
+      run: docker-compose down
