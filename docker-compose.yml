@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=s3,lambda,dynamodb
+      - DEFAULT_REGION=us-east-1
+    networks:
+      - localstack-network
+
   api:
     build:
       context: .
@@ -12,6 +23,8 @@ services:
       - LOCALSTACK_EDGE_PORT=4566
     networks:
       - localstack-network
+    depends_on:
+      - localstack
     entrypoint: /bin/bash -c "./run_localstack.sh"
 
   tests:
@@ -22,11 +35,11 @@ services:
       - LOCALSTACK_HOSTNAME=localstack
       - LOCALSTACK_EDGE_PORT=4566
       - API_URL=http://api:5000
-    depends_on:
-      - api
     networks:
       - localstack-network
-    entrypoint: /bin/bash -c "while ! curl -q -O- http://api:5000/; do sleep 5; done; pytest ./tests/test_rest.py"
+    depends_on:
+      - api
+    entrypoint: /bin/bash -c "while ! curl -s http://api:5000/; do sleep 5; done; pytest ./tests/test_rest.py"
 
 networks:
   localstack-network:
