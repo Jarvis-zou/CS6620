@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=dynamodb,s3
+
+  api:
+    build:
+      context: .
+      dockerfile: DockerfileAPI
+    ports:
+      - "5000:5000"
+    environment:
+      - LOCALSTACK_HOSTNAME=localstack
+      - LOCALSTACK_EDGE_PORT=4566
+    depends_on:
+      - localstack
+
+  tests:
+    build:
+      context: .
+      dockerfile: DockerfileTest
+    environment:
+      - LOCALSTACK_HOSTNAME=localstack
+      - LOCALSTACK_EDGE_PORT=4566
+    depends_on:
+      - api
+    command: ["pytest", "tests/test_rest.py"]
