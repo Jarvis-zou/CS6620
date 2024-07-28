@@ -5,6 +5,5 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install -r requirements.txt
-RUN mv /app/tests/test_rest.py /app/test_rest.py
 
-CMD ["pytest", "test_rest.py"]
+CMD ["pytest", "tests/test_rest.py"]

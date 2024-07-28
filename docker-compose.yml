@@ -35,7 +35,7 @@ services:
       - api
     networks:
       - localstack-network
-    command: ["pytest", "test_rest.py"]
+    command: ["pytest", "/tests/test_rest.py"]
 
 networks:
   localstack-network:

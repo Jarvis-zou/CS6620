@@ -97,6 +97,7 @@ def update_item(item_id):
         return jsonify({'error': 'Item not found'}), 404
 
     item = request.json
+    item['id'] = item_id
     table.update_item(
         Key={'id': item_id},
         UpdateExpression="set #data=:d",
