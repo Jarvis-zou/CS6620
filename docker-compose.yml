@@ -12,6 +12,7 @@ services:
       - LOCALSTACK_EDGE_PORT=4566
     networks:
       - localstack-network
+    entrypoint: /bin/bash -c "./run_localstack.sh"
 
   tests:
     build:
@@ -25,7 +26,7 @@ services:
       - api
     networks:
       - localstack-network
-    entrypoint: /bin/bash -c "while ! curl -s http://api:5000/; do sleep 5; done; pytest tests"
+    entrypoint: /bin/bash -c "while ! wget -q -O- http://api:5000/; do sleep 5; done; pytest tests"
 
 networks:
   localstack-network:
