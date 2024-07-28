@@ -10,9 +10,7 @@ services:
       - SERVICES=dynamodb,s3
     networks:
       - localstack-network
-    volumes:
-      - .:/app
-    command: ["./run_localstack.sh"]
+    command: ["ls"]
 
   tests:
     build:
