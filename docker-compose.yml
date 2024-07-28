@@ -1,16 +1,17 @@
 version: '3.8'
 
 services:
-  localstack:
-    image: localstack/localstack
+  api:
+    build:
+      context: .
+      dockerfile: DockerfileAPI
     ports:
-      - "4566:4566"
       - "5000:5000"
     environment:
-      - SERVICES=dynamodb,s3
+      - LOCALSTACK_HOSTNAME=localstack
+      - LOCALSTACK_EDGE_PORT=4566
     networks:
       - localstack-network
-    command: ["ls"]
 
   tests:
     build:
@@ -19,9 +20,9 @@ services:
     environment:
       - LOCALSTACK_HOSTNAME=localstack
       - LOCALSTACK_EDGE_PORT=4566
-      - API_URL=http://localstack:5000
+      - API_URL=http://api:5000
     depends_on:
-      - localstack
+      - api
     networks:
       - localstack-network
 

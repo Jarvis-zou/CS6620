@@ -35,9 +35,6 @@ jobs:
         echo "Waiting for services to be ready..."
         sleep 10 # Wait for 10 seconds to ensure the services are up and running
 
-    - name: Check API logs
-      run: docker-compose logs localstack
-
     - name: Run tests
       run: docker-compose run tests
 
