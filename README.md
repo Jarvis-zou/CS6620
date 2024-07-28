@@ -15,8 +15,8 @@ This project demonstrates a simple REST API with endpoints for GET, POST, PUT, a
 To build and run the REST API container, execute the following commands:
 
 ```sh
-chmod +x run_api.sh
-./run_api.sh
+chmod +x run_localstack.sh
+./run_localstack.sh
 ```
 
 ### 2. Running the Tests
