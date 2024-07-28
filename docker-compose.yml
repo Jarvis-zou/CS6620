@@ -29,4 +29,4 @@ services:
       - LOCALSTACK_EDGE_PORT=4566
     depends_on:
       - api
-    command: ["pytest", "tests/test_rest.py"]
+    command: ["pytest", "test_rest.py"]
