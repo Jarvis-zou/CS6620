@@ -1,15 +1,6 @@
 version: '3.8'
 
 services:
-  localstack:
-    image: localstack/localstack
-    ports:
-      - "4566:4566"
-    environment:
-      - SERVICES=dynamodb,s3
-    networks:
-      - localstack-network
-
   api:
     build:
       context: .
@@ -19,8 +10,6 @@ services:
     environment:
       - LOCALSTACK_HOSTNAME=localstack
       - LOCALSTACK_EDGE_PORT=4566
-    depends_on:
-      - localstack
     networks:
       - localstack-network
 
@@ -36,7 +25,6 @@ services:
       - api
     networks:
       - localstack-network
-    command: ["pytest", "tests/test_rest.py"]
 
 networks:
   localstack-network:

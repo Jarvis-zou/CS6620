@@ -5,5 +5,6 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install -r requirements.txt
+RUN chmod +x run_localstack.sh
 
-CMD ["python", "./REST/rest.py"]
+CMD ["./run_localstack.sh"]
