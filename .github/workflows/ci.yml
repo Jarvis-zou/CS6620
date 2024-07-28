@@ -36,7 +36,7 @@ jobs:
         sleep 10 # Wait for 10 seconds to ensure the services are up and running
 
     - name: Check API logs
-      run: docker logs rest-api
+      run: docker logs api
 
     - name: Run tests
       run: docker-compose run tests
