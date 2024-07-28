@@ -3,3 +3,4 @@ requests==2.32.2
 pytest==8.2.2
 boto3==1.34.113
 botocore==1.34.113
+localstack==3.6.0
