@@ -7,3 +7,15 @@ until curl -s http://localhost:4566/health | grep '"s3": "running"'; do
 done
 
 python ./REST/rest.py
+
+sleep 5
+
+echo "Checking REST API status..."
+until curl -s http://localhost:5000/health; do
+  echo "Waiting for REST API to be running..."
+  sleep 5
+done
+
+echo "REST API is running."
+
+tail -f /dev/null
