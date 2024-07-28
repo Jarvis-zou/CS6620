@@ -7,4 +7,4 @@ COPY . /app
 RUN pip install -r requirements.txt
 RUN chmod +x /app/run_localstack.sh
 
-CMD ["sh", "/app/run_localstack.sh"]
+CMD ["./run_localstack.sh"]
