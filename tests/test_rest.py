@@ -1,9 +1,8 @@
 import os
-print("Current working directory: ", os.getcwd())
 import pytest
 import boto3
 from botocore.exceptions import ClientError
-from REST.rest import app, create_dynamodb_table, create_s3_bucket
+from rest import app, create_dynamodb_table, create_s3_bucket
 import json
 
 os.environ['AWS_ACCESS_KEY_ID'] = 'test'
