@@ -4,12 +4,12 @@ import json
 
 app = Flask(__name__)
 dynamodb = boto3.resource('dynamodb',
-                          endpoint_url='http://localhost:4566',
+                          endpoint_url='http://localstack:4566',
                           region_name='us-east-1',
                           aws_access_key_id='test',
                           aws_secret_access_key='test')
 s3 = boto3.client('s3',
-                  endpoint_url='http://localhost:4566',
+                  endpoint_url='http://localstack:4566',
                   region_name='us-east-1',
                   aws_access_key_id='test',
                   aws_secret_access_key='test')
