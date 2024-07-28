@@ -26,7 +26,7 @@ services:
       - api
     networks:
       - localstack-network
-    entrypoint: /bin/bash -c "while ! wget -q -O- http://api:5000/; do sleep 5; done; pytest tests"
+    entrypoint: /bin/bash -c "while ! curl -q -O- http://api:5000/; do sleep 5; done; pytest ./tests/test_rest.py"
 
 networks:
   localstack-network:

@@ -35,6 +35,7 @@ jobs:
         docker ps
         echo "Waiting for services to be ready..."
         sleep 5 # Wait for 5 seconds to ensure the services are up and running
+        docker logs cs6620_api_1
 
     - name: Run tests
       run: docker-compose run tests
