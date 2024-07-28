@@ -12,13 +12,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      localstack:
-        image: localstack/localstack
-        ports:
-          - 4566:4566
-        options: --entrypoint=/bin/sh localstack/localstack -c 'while true; do sleep 1; done'
-
     steps:
     - uses: actions/checkout@v3
 
@@ -36,11 +29,8 @@ jobs:
     - name: Build REST API image
       run: docker build -t rest-api -f DockerfileAPI .
 
-    - name: Create Docker network
-      run: docker network create rest-api-network
-
     - name: Run REST API container
-      run: docker run -d --network rest-api-network --name rest-api-container -p 5000:5000 rest-api
+      run: docker run -d -p 5000:5000 --name rest-api-container rest-api
 
     - name: Wait for API to be ready
       run: |
@@ -50,9 +40,7 @@ jobs:
     - name: Build and run tests
       run: |
         docker build -t rest-api-test -f DockerfileTest .
-        docker run --network rest-api-network rest-api-test
+        docker run --network host rest-api-test
 
     - name: Cleanup
-      run: |
-        docker rm -f rest-api-container
-        docker network rm rest-api-network
+      run: docker rm -f rest-api-container
