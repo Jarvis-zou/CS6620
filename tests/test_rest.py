@@ -6,7 +6,7 @@ from botocore.exceptions import NoCredentialsError
 import json
 
 api_url = os.getenv('API_URL', 'http://localhost:5000')
-endpoint_url = 'http://localhost:4566'
+endpoint_url = 'http://localstack:4566'
 bucket_name = 'my-test-bucket'
 
 
